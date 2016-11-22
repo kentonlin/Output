@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
+import classnames from 'classnames';
 import logo from './logo.svg';
-import './App.css';
+import './style.css';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 class App extends Component {
   render() {
+    const { className, ...props } = this.props;
     return (
-      <div className="App">
+      <div className= {classnames('App', className)} {...props}>
         <Navbar>
           <Navbar.Header>
             <Navbar.Brand>

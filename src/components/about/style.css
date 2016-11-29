@@ -1,0 +1,17 @@
+.searchbars {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+   height: 250px;
+   background-color: lightgrey;
+   align-items: center;
+}
+.iframes {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color:black;
+  height: 400px;
+}

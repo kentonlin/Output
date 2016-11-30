@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import classnames from 'classnames';
 import $ from 'jquery';
-import { Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button } from 'react-bootstrap';
 import './style.css';
 
 export default class About extends Component {
@@ -115,6 +115,17 @@ export default class About extends Component {
     return (
 
       <div className={classnames('About', className)} {...props}>
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="/">Output</a>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+            <NavItem eventKey={1} href="/">Profile</NavItem>
+            <NavItem eventKey={1} href="/search">Search</NavItem>
+          </Nav>
+        </Navbar>
         <div className="searchbars">
           <div className="artistSearch">
             <h2>

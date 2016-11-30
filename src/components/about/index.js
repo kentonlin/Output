@@ -15,12 +15,17 @@ export default class About extends Component {
       inputSpotifyQ: "",
       inputYTQuery: "",
       inputSpotifyQarray: [],
-      inputSpotifyQarrayIndex: 0
+      inputSpotifyQarrayIndex: 0,
+      inputLyricsQueryArtist: "",
+      inputLyricsQueryTrack: "",
+      lyrics: "",
+      image: ""
     };
 
     this.searchSpotArtist = this.searchSpotArtist.bind(this);
     this.searchSpotTrack = this.searchSpotTrack.bind(this);
     this.changeSpotTrack = this.changeSpotTrack.bind(this);
+    this.searchLyrics = this.searchLyrics.bind(this);
   }
 
   componentDidMount(){
@@ -36,7 +41,7 @@ export default class About extends Component {
         "content-type": "application/json"
       },
       success: function(data) {
-        console.log(data.artists.items[0].uri);
+        console.log('searchspotifyartist',data.artists);
         this.setState({
           inputSpotifyQ: data.artists.items[0].uri
         });
@@ -75,27 +80,40 @@ export default class About extends Component {
     }.bind(this));
   }
 
+  searchLyrics(){
+
+
+    $.ajax({
+        type: "GET",
+        data: {
+            apikey:"309788821d050a0623303261b9ddedc4",
+            q_track: this.state.inputLyricsQueryTrack,
+            q_artist: this.state.inputLyricsQueryArtist,
+            format:"jsonp",
+            callback:"jsonp_callback"
+        },
+        url: "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get",
+        dataType: "jsonp",
+        jsonpCallback: 'jsonp_callback',
+        contentType: 'application/json',
+        success: function(data) {
+            console.log(data);
+            this.setState({
+              lyrics: data.message.body.lyrics.lyrics_body
+            });
+        }.bind(this),
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+      });
+  }
+
   render() {
     const { className, ...props } = this.props;
     return (
 
-  //     <Form inline>
-  //   <FormGroup controlId="formInlineName">
-  //     <ControlLabel>Name</ControlLabel>
-  //     {' '}
-  //     <FormControl type="text" placeholder="Jane Doe" />
-  //   </FormGroup>
-  //   {' '}
-  //   <FormGroup controlId="formInlineEmail">
-  //     <ControlLabel>Email</ControlLabel>
-  //     {' '}
-  //     <FormControl type="email" placeholder="jane.doe@example.com" />
-  //   </FormGroup>
-  //   {' '}
-  //   <Button type="submit">
-  //     Send invitation
-  //   </Button>
-  // </Form>
       <div className={classnames('About', className)} {...props}>
         <div className="searchbars">
           <div className="artistSearch">
@@ -113,6 +131,17 @@ export default class About extends Component {
             <Button bsStyle='primary' onClick={this.searchSpotTrack}> <div> <i className="fa fa-search" aria-hidden="true"></i> Search </div> </Button>
             <Button bsStyle='primary' onClick={this.changeSpotTrack}> <div> <i className="fa fa-search" aria-hidden="true"></i> Try Again </div> </Button>
           </div>
+          <div>
+            <h2>
+              Search Lyrics
+            </h2>
+            <input className="inputLyrics" placeholder="Artist" type="text" onChange={(event) => {this.setState({inputLyricsQueryArtist: event.target.value})}}/>
+            <input className="inputLyrics" placeholder="Track" type="text" onChange={(event) => {this.setState({inputLyricsQueryTrack: event.target.value})}}/>
+            <Button bsStyle='primary' onClick={this.searchLyrics}> <div> <i className="fa fa-search" aria-hidden="true"></i> Search </div> </Button>
+          </div>
+        </div>
+        <div className="lyrics">
+          {this.state.lyrics}
         </div>
         <div className="iframes">
           <div id="player"></div>

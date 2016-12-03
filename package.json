@@ -1,6 +1,9 @@
 {
   "name": "output",
   "version": "0.1.0",
+  "engines": {
+    "node": "5.0.0"
+  },
   "private": true,
   "devDependencies": {
     "react-scripts": "0.7.0"

@@ -8,7 +8,6 @@ class App extends Component {
   render() {
     const { className, ...props } = this.props;
     return (
-
       <div className= {classnames('App', className)} {...props}>
         <Navbar>
           <Navbar.Header>

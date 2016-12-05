@@ -1,0 +1,28 @@
+.searchbars {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+   height: 250px;
+   background-color: lightgrey;
+   align-items: center;
+}
+.lyrics {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  padding-left: 20px;
+  paddding-right:20px;
+}
+.iframes {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color:black;
+  height: 400px;
+  padding-top: 20px;
+}

@@ -121,8 +121,8 @@ export default class About extends Component {
             </Navbar.Brand>
           </Navbar.Header>
           <Nav>
-            <NavItem eventKey={1} href="/">Profile</NavItem>
-            <NavItem eventKey={1} href="/search">Search</NavItem>
+            <NavItem eventKey={1} href="/#/">Profile</NavItem>
+            <NavItem eventKey={2} href="/#/search">Search</NavItem>
           </Nav>
         </Navbar>
         <div className="searchbars">
@@ -157,7 +157,7 @@ export default class About extends Component {
           <div id="player"></div>
             <iframe id="ytplayer" type="text/html" width="640" height="360"
             src={"https://www.youtube.com/embed?listType=search&list=" + this.state.inputYTQuery}
-            frameborder="0"></iframe>
+            frameborder="0" allowFullScreen></iframe>
             <iframe src={"https://embed.spotify.com/?uri=" + this.state.inputSpotifyQ}width="300" height="360" frameborder="0" allowtransparency="true"></iframe>
         </div>
       </div>
